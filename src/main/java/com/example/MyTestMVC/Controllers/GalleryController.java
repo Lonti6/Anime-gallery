@@ -21,7 +21,7 @@ import java.util.UUID;
 @Controller
 public class GalleryController {
 
-    private final int postsOnPage = 2;
+    private final int postsOnPage = 12;
 
     @Autowired
     private PostRepository postRepository;
@@ -36,6 +36,8 @@ public class GalleryController {
 
         Iterable<Post> posts = getPosts("NONE", 0);
         model.addAttribute("posts", posts);
+
+        Post p = new Post();
 
         finalPrepare(model);
 
