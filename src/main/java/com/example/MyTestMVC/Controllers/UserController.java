@@ -14,6 +14,7 @@ public class UserController {
         model.addAttribute("title", "Регистрация");
         return "registration";
     }
+
     @GetMapping("/authorization")
     public String Authorization(Model model)
     {
