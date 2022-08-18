@@ -13,16 +13,16 @@
     <header th:insert="Parts/header :: header"/>
 
     <main class="form-signin m-auto" style="width: 30%;">
-        <form>
+        <form th:action="@{/authorization}" method="post">
             <img class="mb-4" src="images/7.webp" alt="" width="192" height="137">
             <h1 class="h3 mb-3 fw-normal">Пожалуйста, выполните авторизацию</h1>
 
             <div class="form-floating mt-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder=" ">
+                <input type="email" class="form-control" id="floatingInput" name="username" placeholder=" ">
                 <label for="floatingInput" class="text-black">Электронная почта</label>
             </div>
             <div class="form-floating mt-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder=" ">
+                <input type="password" class="form-control" name="password" id="floatingPassword" placeholder=" ">
                 <label for="floatingPassword" class="text-black">Пароль</label>
             </div>
 
@@ -35,10 +35,17 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit">Авторизация</button>
 
             <p class="mt-3">Вы всё ешё не зарегистрированы?</p>
-
-            <button class="w-100 btn btn-lg btn-warning mt-2" type="submit">Регистрация</button>
 <!--            <p class="mt-5 mb-3 text-muted">© 2022</p>-->
         </form>
+
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <a href="/registration"><button class="w-100 btn btn-lg btn-warning mt-2" type="submit">Регистрация</button></a>
     </main>
 
     <footer th:insert="Parts/footer :: footer" class="mt-5"/>

@@ -13,22 +13,25 @@
     <header th:insert="Parts/header :: header"/>
 
     <main class="form-signin m-auto" style="width: 30%;">
-        <form>
+        <form th:action="@{/registration}" method="post">
             <img class="mb-4" src="images/6.webp" alt="" width="192" height="137">
             <h1 class="h3 mb-3 fw-normal">Превзойди свой предел и присоединись к нам!</h1>
 
             <div class="form-floating mt-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder=" ">
+                <input type="email" class="form-control" id="floatingInput" placeholder=" " name="mail">
                 <label for="floatingInput" class="text-black">Электронная почта</label>
             </div>
 
             <div class="form-floating mt-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder=" ">
+                <input minlength="8" type="password" class="form-control" id="floatingPassword" placeholder=" "
+                       name="password">
                 <label for="floatingPassword" class="text-black">Пароль</label>
+                <p class="text-red" id="passError">Минимальная длина пароля: 8 символов!</p>
             </div>
 
             <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="floatingNickName" placeholder=" ">
+                <input minlength="6" type="text" class="form-control" id="floatingNickName" placeholder=" "
+                       name="nickName">
                 <label for="floatingNickName" class="text-black">Псевдоним</label>
             </div>
 
@@ -38,6 +41,8 @@
 
     <footer th:insert="Parts/footer :: footer" class="mt-5"/>
 </div>
+
+<script src="js/checkInputReg.js"></script>
 
 </body>
 </html>

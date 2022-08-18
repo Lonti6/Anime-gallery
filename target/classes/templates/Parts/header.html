@@ -15,6 +15,11 @@
             <div class="text-end">
                 <a href="/authorization"><button type="button" class="btn btn-outline-light me-2">Войти</button></a>
                 <a href="/registration"><button type="button" class="btn btn-warning">Регистрация</button></a>
+
+                <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
             </div>
         </div>
     </div>
