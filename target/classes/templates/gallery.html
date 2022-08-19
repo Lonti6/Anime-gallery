@@ -30,6 +30,8 @@
                     </select>
                     <input type="text" th:value="0" class="d-none" name="pageNum">
                     <button class="btn bg-success mt-3" type="submit">Применить</button>
+
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
                 </form>
 
 
@@ -52,10 +54,10 @@
         </div>
     </main>
 
-    <form action="/gallery" method="post" style="margin:30px 0px 0px 0px;">
-        <div class="container">
-            <div class="row row-cols-7 align-items-start" style="width:35%;">
-                <div th:each="page, state: ${pageList}" class="col">
+    <div class="container">
+        <div class="row row-cols-7 align-items-start" style="width:35%;">
+            <div th:each="page, state: ${pageList}" class="col">
+                <form action="/gallery" method="post" style="margin:30px 0px 0px 0px;">
                     <button th:if="${state.count<6 && (state.count+startPage)<pageCount+1}"
                             th:text="${startPage + state.count}"
                             th:value="${state.index + startPage}"
@@ -66,10 +68,13 @@
                                 height: 40px;">
                     </button>
 
-                    <p th:if="${state.count==6 && ((state.index+startPage)<pageCount)}">
-                        ...
-                    </p>
-
+                    <input type="text" th:value="${sortType}" class="d-none" name="sortType">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                </form>
+                <p th:if="${state.count==6 && ((state.index+startPage)<pageCount)}">
+                    ...
+                </p>
+                <form action="/gallery" method="post" style="margin:30px 0px 0px 0px;">
                     <button th:if="${state.count==7 && ((state.index+startPage)<pageCount+1)}" th:text="${pageCount}"
                             th:value="${pageCount-1}"
                             name="pageNum"
@@ -78,39 +83,61 @@
                                 width: 40px;
                                 height: 40px;">
                     </button>
-                </div>
+                    <input type="text" th:value="${sortType}" class="d-none" name="sortType">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                </form>
             </div>
         </div>
-
-        <input type="text" th:value="${sortType}" class="d-none" name="sortType">
-    </form>
+    </div>
 
     <form action="/gallery" method="post" style="margin:5px 0px 0px 0px;">
         <div class="container">
-            <div class="row row-cols-1 align-items-start" style="width:35%;">
+
+            <div class="row row-cols-2 align-items-start" style="width:35%;">
                 <button th:if="${startPage > 0}"
-                        th:text="Назад"
                         th:value="${startPage-1}"
                         name="pageNum"
-                        class="btn bg-success text-black"
-                        style="width:100px;">
+                        class="btn bg-success text-black rounded-circle"
+                        style="
+                                width: 40px;
+                                height: 40px;
+                                margin: 0px 20px 0px 0px;">
+                    <
                 </button>
                 <input type="text" th:value="${sortType}" class="d-none" name="sortType">
+
+                <button
+                        th:if="${startPage < pageCount-1}"
+                        name="pageNum"
+                        class="btn bg-success text-black align-items-start rounded-circle"
+                        th:value="${startPage+1}"
+                        style="
+                                width: 40px;
+                                height: 40px;">
+                    >
+                </button>
+                <input type="text" th:value="${sortType}" class="d-none" name="sortType">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
             </div>
+
         </div>
     </form>
 
     <form action="/gallery" method="post" style="margin:5px 0px 30px 0px;">
         <div class="container">
             <div class="row row-cols-1 align-items-start" style="width:35%;">
+
                 <button
                         name="pageNum"
                         class="btn bg-success text-black align-items-start"
-                        value="0"
-                        style="width:100px;">
+                        th:value="0"
+                        style="
+                                width: 100px;
+                                height: 40px;">
                     К началу
                 </button>
                 <input type="text" th:value="${sortType}" class="d-none" name="sortType">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
             </div>
         </div>
     </form>

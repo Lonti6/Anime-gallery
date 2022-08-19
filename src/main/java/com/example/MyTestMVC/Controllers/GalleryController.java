@@ -21,7 +21,7 @@ import java.util.UUID;
 @Controller
 public class GalleryController {
 
-    private final int postsOnPage = 12;
+    private final int postsOnPage = 6;
 
     @Autowired
     private PostRepository postRepository;
