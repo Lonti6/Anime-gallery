@@ -104,7 +104,6 @@
                                 margin: 0px 20px 0px 0px;">
                     <
                 </button>
-                <input type="text" th:value="${sortType}" class="d-none" name="sortType">
 
                 <button
                         th:if="${startPage < pageCount-1}"
@@ -123,6 +122,8 @@
         </div>
     </form>
 
+
+    <!-- Кнопка "К началу" -->
     <form action="/gallery" method="post" style="margin:5px 0px 30px 0px;">
         <div class="container">
             <div class="row row-cols-1 align-items-start" style="width:35%;">

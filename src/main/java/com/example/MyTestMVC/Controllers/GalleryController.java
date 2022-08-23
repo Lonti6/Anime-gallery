@@ -1,6 +1,7 @@
 package com.example.MyTestMVC.Controllers;
 
 import com.example.MyTestMVC.Models.Post;
+import com.example.MyTestMVC.Repositories.LikeRepository;
 import com.example.MyTestMVC.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
