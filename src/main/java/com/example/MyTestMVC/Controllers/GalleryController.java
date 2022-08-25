@@ -1,12 +1,16 @@
 package com.example.MyTestMVC.Controllers;
 
 import com.example.MyTestMVC.Models.Post;
+import com.example.MyTestMVC.Models.User;
 import com.example.MyTestMVC.Repositories.LikeRepository;
 import com.example.MyTestMVC.Repositories.PostRepository;
+import com.example.MyTestMVC.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +30,9 @@ public class GalleryController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -120,5 +127,16 @@ public class GalleryController {
         var a = Arrays.asList(new Integer[ (temp <8) ? temp : 7]);
         model.addAttribute("pageList", a);
         model.addAttribute("pageCount", temp);
+
+        try {
+            var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            model.addAttribute("userID",
+                    userRepository.findByMail(((UserDetails)principal).getUsername()).getId());
+        }
+        catch (Exception e){
+            model.addAttribute("userID", "");
+            e.printStackTrace();
+        }
     }
 }

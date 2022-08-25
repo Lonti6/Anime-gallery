@@ -25,7 +25,8 @@ public class Evaluations {
     public Evaluations() {
     }
 
-    public Evaluations(@NotNull long userId, @NotNull boolean isGood) {
+    public Evaluations(@NotNull long userId, @NotNull long postId, @NotNull boolean isGood) {
+        this.postId = postId;
         this.userId = userId;
         this.isGood = isGood;
     }

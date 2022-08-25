@@ -52,6 +52,7 @@
                         <div class="card-body">
                             <h1 th:text="${el.title}" class="cardTitle" name="cardTitle"></h1>
                             <h1 th:text="${el.rating}+'/10'" class="cardRating"></h1>
+                            <input type="text" th:value="${el.id}" class="postID d-none" name="postID">
                         </div>
                     </div>
                 </div>
@@ -177,10 +178,13 @@
                     <h1>999</h1>
                     <img class="img-responsive center-block" src="images/likeBut.png"
                          style="width: 60px;
-                                        height: 60px;">
+                                        height: 60px;" id="likeBut">
                     <div style="width: 100%; height: 1px;"></div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
 
+                    <input type="text" th:value="${userID}" class="d-none" id="userID">
+                    <input type="text" class="d-none" id="cardId">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                 </div>
             </div>
         </div>
@@ -191,7 +195,7 @@
 </div>
 
 <script src="js/changeModalGalery.js"></script>
-<script src="js/liking.js"></script>
+<script src="js/likeController.js"></script>
 </body>
 
 </html>
