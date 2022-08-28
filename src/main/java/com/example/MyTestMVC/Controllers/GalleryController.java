@@ -31,8 +31,7 @@ public class GalleryController {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -127,16 +126,5 @@ public class GalleryController {
         var a = Arrays.asList(new Integer[ (temp <8) ? temp : 7]);
         model.addAttribute("pageList", a);
         model.addAttribute("pageCount", temp);
-
-        try {
-            var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-            model.addAttribute("userID",
-                    userRepository.findByMail(((UserDetails)principal).getUsername()).getId());
-        }
-        catch (Exception e){
-            model.addAttribute("userID", "");
-            e.printStackTrace();
-        }
     }
 }
